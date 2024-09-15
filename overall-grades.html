@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <title>Overall Grades</title>
+  </head>
+  <body class="bg-gray-200">
+    <header class="body-font bg-white text-gray-400">
+      <div
+        class="container mx-auto flex flex-col flex-wrap items-center p-5 md:flex-row"
+      >
+        <nav
+          class="flex flex-wrap items-center justify-center text-base md:ml-auto md:mr-auto"
+        >
+          <a href="students.html" class="mr-5 text-gray-600 hover:text-black"
+            >Students</a
+          >
+          <a href="courses.html" class="mr-5 text-gray-600 hover:text-black"
+            >Courses</a
+          >
+          <a href="grades.html" class="mr-5 text-gray-600 hover:text-black"
+            >Grades</a
+          >
+          <a
+            href="results.html"
+            class="mr-5 font-medium text-black underline hover:text-black"
+            >Results</a
+          >
+        </nav>
+      </div>
+    </header>
+    <div
+      class="mx-auto my-20 flex w-11/12 flex-col items-center justify-center"
+    >
+      <div
+        class="container mx-auto max-h-[85%] min-h-[60%] w-full overflow-y-auto rounded-md bg-white p-10 sm:p-4"
+      >
+        <h2 class="mb-3 text-2xl font-semibold leading-tight">
+          Select Options to Filter Results
+        </h2>
+
+        <div class="overflow-x-auto px-1">
+          <div class="my-2 flex space-x-4">
+            <div class="flex flex-col space-y-2">
+              <label class="block py-0.5 px-0.5 text-sm">Select Course</label>
+              <select class="form-input-select" id="course">
+                <option value="1">All</option>
+              </select>
+            </div>
+          </div>
+          <table class="min-w-full text-xs">
+            <thead class="rounded-t-lg">
+              <tr class="">
+                <th title="Ranking" class="p-3 text-left">Sr. No</th>
+                <th title="Team name" class="p-3 text-left">Student Name</th>
+                <th title="Team name" class="p-3 text-left">Corse Name</th>
+                <th title="Wins" class="p-3 text-left">Course Code</th>
+                <th title="Wins" class="p-3 text-left">Obtained Marks</th>
+                <th title="Wins" class="p-3 text-left">Total Marks</th>
+                <th title="Wins" class="p-3 text-left">Percentage</th>
+                <th title="Wins" class="p-3 text-left">Grade</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

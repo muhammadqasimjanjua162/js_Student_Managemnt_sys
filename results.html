@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <script src="./js/Storage.js"></script>
+    <title>Courses</title>
+  </head>
+  <body class="bg-gray-200">
+    <script>
+     
+    </script>
+    <header class="body-font bg-white text-gray-400">
+      <div
+        class="container mx-auto flex flex-col flex-wrap items-center p-5 md:flex-row"
+      >
+        <nav
+          class="flex flex-wrap items-center justify-center text-base md:ml-auto md:mr-auto"
+        >
+          <a href="students.html" class="mr-5 text-gray-600 hover:text-black"
+            >Students</a
+          >
+          <a href="courses.html" class="mr-5 text-gray-600 hover:text-black"
+            >Courses</a
+          >
+          <a href="grades.html" class="mr-5 text-gray-600 hover:text-black"
+            >Grades</a
+          >
+          <a
+            href="results.html"
+            class="mr-5 font-medium text-black underline hover:text-black"
+            >Results</a
+          >
+        </nav>
+      </div>
+    </header>
+    <div
+      class="mx-auto my-20 flex w-11/12 flex-col items-center justify-center"
+    >
+      <div
+        class="container mx-auto max-h-[85%] min-h-[60%] w-full overflow-y-auto rounded-md bg-white p-10 sm:p-4"
+      >
+        <div class="flex justify-between">
+          <h2 class="mb-3 text-2xl font-semibold leading-tight">
+            Select Options to Filter Results
+          </h2>
+          <!-- <div>
+            <a
+              href="overall-grades.html"
+              class="text-blue-600 underline hover:font-medium"
+              href="#"
+              >View Overall Grades</a
+            >
+          </div> -->
+        </div>
+        <div class="overflow-x-auto px-1">
+          <div class="my-2 flex space-x-4">
+            <div class="flex flex-col space-y-2">
+              <label class="block py-0.5 px-0.5 text-sm">Select Student</label>
+              <select class="form-input-select" id="student" default>
+                
+              </select>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <label class="block py-0.5 px-0.5 text-sm">Select Course</label>
+              <select class="form-input-select" id="course">
+                <option value="default">Select Course</option>
+              </select>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <label class="block py-0.5 px-0.5 text-sm"
+                >Select Grade Type</label
+              >
+              <select class="form-input-select" id="gradeType">
+                <!-- <option value="default">Select Grade Type</option> -->
+                <!-- <option value="Homework">Homework</option>
+                <option value="Test">Test</option> -->
+              </select>
+            </div>
+            <div class="flex flex-col space-y-2">
+              <label class="block py-0.5 px-0.5 text-sm">Assignment #</label>
+              <select class="form-input-select" id="assignment">
+                <option value="default">default</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+          </div>
+          <table class="min-w-full text-xs">
+            <thead class="rounded-t-lg">
+              <tr class="">
+                <th title="Ranking" class="p-3 text-left">Sr. No</th>
+                <th title="Team name" class="p-3 text-left">Student Name</th>
+                <th title="Team name" class="p-3 text-left">Corse Name</th>
+                <th title="Wins" class="p-3 text-left">Course Code</th>
+                <th title="Wins" class="p-3 text-left">Grade Type</th>
+                <th title="Wins" class="p-3 text-left">Assignment #</th>
+                <th title="Wins" class="p-3 text-left">Obtained Marks</th>
+                <th title="Wins" class="p-3 text-left">Total Marks</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+   <script>
+    let garadesData=getDatafromStorage("gradesArray");
+    let courseArray=getDatafromStorage("Coursearray");
+    console.log(courseArray,"dlll")
+   
+    console.log(garadesData,"no data");
+    let renderTable=(data)=>{
+      let tableBodyName=data?.map((item)=>`<tr id="gradesData">
+          <td title="Ranking" class="p-3 text-left">${item.id}</th>
+          <td title="Team name" class="p-3 text-left">${item.student}</td>
+          <td title="Team name" class="p-3 text-left">${item.courseName}</td>
+          <td title="Wins" class="p-3 text-left">${item.courseCode}</td>
+          <td title="Wins" class="p-3 text-left">${item.gradeType}</td>
+          <td title="Wins" class="p-3 text-left">${item.assignment}</td>
+          <td title="Wins" class="p-3 text-left">${item.obtainedMarks}</td>
+          <td title="Wins" class="p-3 text-left">${item.totalMarks}</td>
+          <th title="Current streak" class="p-3 text-center" colspan="2">
+            Action
+          </th>
+        </tr>`);
+
+      document.getElementById("tableBody").innerHTML=tableBodyName;
+    }
+    renderTable(garadesData);
+    let populateDropdown=(selectType)=>{
+  garadesData.forEach((element, index) => {
+        gradeTypeSelect.options[index] = new Option(element.gradeType,element.gradeType);
+ 
+});
+
+}
+   
+    
+      
+let studentSelect = document.getElementById("student");
+let courseSelect = document.getElementById("course");
+console.log(courseSelect,"spoloo")
+let gradeTypeSelect = document.getElementById("gradeType");
+let assignmentSelect = document.getElementById("assignment");
+console.log(gradeTypeSelect,"ohmhgg")
+
+const populateSelect = (selectElement, uniqueValues) => {
+  console.log(uniqueValues,"avlo")
+  selectElement.options[0] =new Option( "default","",true,true)
+  uniqueValues.forEach((value, index) => {
+    console.log("Hello")
+  
+ 
+    
+    selectElement.options[index+1] =new Option( value,value)
+  });
+};
+
+
+let uniqueStudents = [...new Set(garadesData.map(item => item.student))];
+console.log(uniqueStudents,"uniqueSt")
+let uniqueCourses = [...new Set(garadesData.map(item => item.courseName))];
+let uniqueGradeTypes = [...new Set(garadesData.map(item => item.gradeType))];
+
+console.log(uniqueGradeTypes,"uni")
+
+
+populateSelect(studentSelect, uniqueStudents);
+populateSelect(courseSelect, uniqueCourses);
+populateSelect(gradeTypeSelect, uniqueGradeTypes);
+selectedCourse=null;
+selectedStudent=null;
+selectedGradeType=null;
+selectedAssignemt=null;
+const addEvent = (ele) => {
+  console.log(ele,"elem")
+  ele.addEventListener("change", (e) => {
+    console.log(ele,"omgno")
+    console.log(e.target.value,"omgno")
+    // Update the corresponding selected value based on the select element
+    if (ele === studentSelect) {
+      console.log("studentSelect")
+      selectedStudent = e.target.value ? e.target.value : null;
+    }
+    if (ele === courseSelect) {
+      selectedCourse = e.target.value ? e.target.value : null;
+    }
+    if (ele === gradeTypeSelect) {
+      console.log("gradeSelected")
+      selectedGradeType = e.target.value ? e.target.value : null;
+    }
+    if(ele===assignmentSelect){
+      selectedAssignemt=e.target.value?e.target.value:null;
+    }
+
+    // Filter data based on the selected student and course
+    console.log(!selectedStudent,"nit")
+    console.log(!selectedCourse,"nit2")
+    if(e.target.value!=="default"){
+      let filteredData = garadesData.filter((item) => {
+      console.log(item.student,selectedStudent,"both")
+      console.log(item?.gradeType,"gutuu")
+      console.log(selectedStudent,"solomo")
+      return (
+
+       ((!selectedStudent || item.student === selectedStudent)&&(selectedStudent!=="default") ) &&
+        (!selectedCourse || item.courseName === selectedCourse)&&(!selectedGradeType||item.gradeType===selectedGradeType)&&(
+          !selectedAssignemt||item.assignment===selectedAssignemt
+        )
+        )
+      ;
+    });
+    renderTable(filteredData);
+
+    }
+   
+    // Render the filtered data
+   
+  });
+};
+
+// Attach event listeners to both select elements
+addEvent(studentSelect);
+addEvent(courseSelect);
+addEvent(gradeTypeSelect);
+addEvent(assignmentSelect);
+
+
+
+
+
+
+      // studentSelect.innerHTML=`${students}.map((item)=><option>${item.firstName}</option)`;
+//         garadesData.forEach((element, index) => {
+//     studentSelect.options[index] = new Option(element.student,element.lastName);
+//     let addEvent=(selectElem)=>{
+//       selectElem.addEventListener("change", function() {
+//       let selectedValue = selectElem.value.trim().toLowerCase();
+//       console.log(selectedValue,"noVal")
+//       console.log(garadesData,"doll")
+//       let resultantArray=[]
+//       if(selectElem===courseSelect){
+//          resultantArray=garadesData.filter((item)=>item.courseName==selectedValue)
+
+//       }
+//        if(selectElem===studentSelect){
+//         resultantArray=garadesData.filter((item)=>item.student==selectedValue)
+
+//       }
+      
+//       // console.log(resultantArray,"resordt")
+
+//       renderTable(resultantArray)
+    
+// });
+
+
+//     }
+//     addEvent(courseSelect);
+// addEvent(studentSelect);
+   
+    
+// });
+   
+
+   
+    
+   </script>
+  </body>
+</html>

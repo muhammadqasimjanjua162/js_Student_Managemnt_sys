@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <title>Add Student</title>
+    <script src="./js/Storage.js" defer></script>
+  </head>
+  <body class="bg-gray-200">
+    <header class="body-font bg-white text-gray-400">
+      <div
+        class="container mx-auto flex flex-col flex-wrap items-center p-5 md:flex-row"
+      >
+        <nav
+          class="flex flex-wrap items-center justify-center text-base md:ml-auto md:mr-auto"
+        >
+          <a href="students.html" class="mr-5 text-gray-600 hover:text-black"
+            >Students</a
+          >
+          <a
+            href="courses.html"
+            class="mr-5 font-medium text-black underline hover:text-black"
+            >Courses</a
+          >
+          <a href="grades.html" class="mr-5 text-gray-600 hover:text-black"
+            >Grades</a
+          >
+          <a href="results.html" class="mr-5 text-gray-600 hover:text-black"
+            >Results</a
+          >
+        </nav>
+      </div>
+    </header>
+    <div class="flex w-full flex-col items-center justify-center bg-gray-200">
+      <div class="mx-auto flex w-4/6 flex-col rounded-md bg-white px-20 my-10 py-10">
+        <h1 class="my-4 py-4 text-3xl font-bold">Add new course</h1>
+        <form action="#" class="w-full" method="POST" id="courseFrom">
+          <div class="flex w-full space-x-10">
+            <div class="flex flex-col">
+              <label class="block py-0.5 px-0.5 text-sm">Course Name</label>
+              <input
+                autofocus="true"
+                required
+                type="text"
+                name="courseName"
+                placeholder="Course Name"
+                class="form-input"
+              />
+            </div>
+            <div class="flex flex-col">
+              <label class="block py-0.5 px-0.5 text-sm">Course Code</label>
+              <input
+                required
+                type="text"
+                name="courseCode"
+                placeholder="Course Code"
+                class="form-input"
+              />
+            </div>
+          </div>
+
+          <div class="mt-10 flex max-w-2xl justify-end space-x-3 pr-6">
+            <a href="courses.html" class="secondary-button"> Go Back </a>
+            <button
+              type="submit"
+              class="rounded-md bg-green-600 px-5 py-2.5 text-white"
+            
+            >
+              Add Course
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      
+      
+      window.onload = function() {
+        let coursesArray = JSON.parse(localStorage.getItem("Coursearray")) || [];
+       
+    
+    const formData=document.getElementById("courseFrom")
+   
+console.log(formData,"dataaaName")
+formData.addEventListener("submit", onFormSubmit);
+function onFormSubmit(event) {
+event.preventDefault();
+
+const formToObject = formData => Object.fromEntries(new FormData(formData),);
+
+
+const courseData=(formToObject(formData));
+console.log(courseData,"datass")
+  courseData.id=Math.random().toString(36).substr(2, 9);
+  coursesArray.push(courseData);
+  saveDataToLocalStorage(coursesArray,"Coursearray")
+
+      // const storedCourses = JSON.parse(localStorage.getItem("Coursearray"));
+      // console.log(storedCourses,"store")
+    location.href="courses.html"
+
+// formDataArray.push(studentData)
+// console.log(formDataArray,"arraysss")
+// localStorage.setItem("Studentarray", JSON.stringify(formDataArray))
+// const storedStudents = JSON.parse(localStorage.getItem("Studentarray"));
+
+// console.log(storedStudents ,"namesArrat")
+// location.href="students.html"
+
+
+
+
+
+
+
+}
+
+ 
+}
+      
+      
+    </script>
+   
+  </body>
+</html>
